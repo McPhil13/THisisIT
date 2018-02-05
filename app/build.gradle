@@ -1,0 +1,81 @@
+apply plugin: 'com.android.application'
+
+android {
+    signingConfigs {
+        config {
+            keyAlias 'com.example.mcphil.avastus'
+            keyPassword '123456'
+            storeFile file('C:/ASsaveproject/Avastus7/app/signing/keys/mcphilkeys.jks')
+            storePassword '123456'
+            v2SigningEnabled false
+        }
+    }
+    compileSdkVersion 26
+    buildToolsVersion "26.0.2"
+    defaultConfig {
+        applicationId "com.example.mcphil.avastus"
+        minSdkVersion 14
+        targetSdkVersion 26
+        multiDexEnabled true
+        versionCode 1
+        versionName "1.01.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        testApplicationId 'com.example.mcphil.avastus'
+        signingConfig signingConfigs.config
+    }
+    //for MathsQuiz Activity
+    packagingOptions {
+        exclude 'META-INF/DEPENDENCIES'
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/NOTICE.txt'
+        exclude 'META-INF/LICENSE.txt'
+    }
+    //end of MathsQuiz Act
+    buildTypes {
+        release {
+            minifyEnabled true
+            useProguard false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+
+        }
+        debug {
+            applicationIdSuffix 'Avastus'
+            versionNameSuffix '1.0'
+        }
+    }
+    productFlavors {
+    }
+}
+
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    compile 'com.android.support:appcompat-v7:26.0.2'
+    compile 'com.android.support.constraint:constraint-layout:1.0.2'
+    testCompile 'junit:junit:4.12'
+    androidTestCompile 'com.android.support.test:runner:1.0.1'
+    androidTestCompile 'com.android.support.test.espresso:espresso-core:3.0.1'
+    //AppBar coordinator layout
+    compile 'com.android.support:design:26.0.2'
+    //Card View
+    compile 'com.android.support:cardview-v7:26.0.2'
+    //Universal Image Loader
+    compile 'com.nostra13.universalimageloader:universal-image-loader:1.9.5'
+    // Remote binary dependency
+    compile 'net.schmizz:sshj:0.10.0'
+    //Git Hub
+    //compile 'com.muddzdev:styleabletoast:1.0.8'
+    //firebase
+    compile 'com.google.firebase:firebase-core:11.8.0'
+    //firebase authentication
+    compile 'com.google.firebase:firebase-auth:11.8.0'
+    //Pdf Viewer dependencies
+    compile 'com.github.barteksc:android-pdf-viewer:1.4.0'
+    //firebase Database
+    compile 'com.google.firebase:firebase-database:11.8.0'
+    //client firebase
+    compile 'com.firebase:firebase-client-android:2.3.1'
+    //multidex support 64k
+    compile 'com.android.support:multidex:1.0.2'
+}
+apply plugin: 'com.google.gms.google-services'
